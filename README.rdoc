@@ -15,12 +15,11 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
   #
     
   @posts.to_xls
-  @posts.to_xls(:only => [:title, :body])
-  @posts.to_xls(:except => [:id])
-  @posts.to_xls(:header => false)
+  @posts.to_xls(:fields => you_model_keys)
 
 
 == Example
+  neel ColumnName  model with keys => :model_name , :column_name ,:print_number
 
   class PostsController < ApplicationController
     def index
@@ -30,7 +29,7 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
         format.xls { send_data(@posts.to_xls) }
         #format.xls {
 	      #  filename = "posts-#{Time.now.strftime("%Y%m%d%H%M%S")}.xls" 
-        #  send_data(@posts.to_xls, :type => "application/excel; charset=utf-8; header=present", :filename => filename)
+        #  send_data(@posts.to_xls(:fields => you_database_keys), :type => "application/excel; charset=utf-8; header=present", :filename => filename)
         #}
       end
     end
@@ -40,19 +39,14 @@ This simple plugin gives you the ability to call to_xls to a collection of activ
 == Dependencies
 
   gem install spreadsheet
+
+  git clone http://github.com/jrices/j-provider.git
   
 
 == Install
 
-  with gem
-  gem install to_xls-rails
-
-  with bundler
-  gem 'to_xls-rails'
-  bundle install
-
-  with git
-  git clone http://github.com/wenke/to_xls-rails.git
+  only with git
+  git clone http://github.com/wenke/to_xls_with_key.git
 
 
 == Note
